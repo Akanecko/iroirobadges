@@ -1,10 +1,10 @@
 /**
  * @name iroirobadges
  * @version 1.0.22
- * @description Allows you to locally assign badges to users through the user context menu.
+ * @description いろいろバッジをつけれる。
  * @author HappyOfficial
- * @source https://github.com/QWERTxD/BetterDiscordPlugins/tree/main/AssignBadges
- * @updateUrl https://raw.githubusercontent.com/QWERTxD/BetterDiscordPlugins/main/AssignBadges/AssignBadges.plugin.js
+ * @source https://github.com/Akanecko/iroirobadges
+ * @updateUrl https://github.com/Akanecko/iroirobadges/blob/main/iroirobadges.plugin.js
  */
 /*@cc_on
 @if (@_jscript)
@@ -29,6 +29,15 @@
     WScript.Quit();
 @else@*/
 /* Generated Code */
+
+const lang = document.documentElement.lang;
+
+const iroirobadges = function() {};
+iroirobadges.prototype.log = function(msg, data) {
+  const name = this.getName();
+  console.log(`%c[${name}] ${msg}`, 'color:#C9242F', data);
+};
+
 const config = {
 	"info": {
 		"name": "iroirobadges",
@@ -679,4 +688,26 @@ module.exports = window.hasOwnProperty("ZeresPluginLibrary") ?
 		start() {}
 		stop() {}
 	};
+
+iroirobadges.prototype.update = function() {
+  const url = `https://github.com/Akanecko/iroirobadges/blob/main/iroirobadges.plugin.js`
+  let libraryScript = document.getElementById('ZLibraryScript');
+  if (!libraryScript || !window.ZLibrary) {
+    if (libraryScript) libraryScript.parentElement.removeChild(libraryScript);
+    libraryScript = document.createElement('script');
+    libraryScript.setAttribute('type', 'text/javascript');
+    libraryScript.setAttribute('src', 'https://rauenzi.github.io/BDPluginLibrary/release/ZLibrary.js');
+    libraryScript.setAttribute('id', 'ZLibraryScript');
+    document.head.appendChild(libraryScript);
+  }
+  if (window.ZLibrary) ZLibrary.PluginUpdater.checkForUpdate(this.getName(), this.getVersion(), url);
+  else libraryScript.addEventListener('load', () => {
+    ZLibrary.PluginUpdater.checkForUpdate(this.getName(), this.getVersion(), url);
+  });
+};
+iroirobadges.prototype.start = function() {
+  this.log('start', this.getVersion());
+  this.update();
+  this.addScript();
+};
 /*@end@*/
