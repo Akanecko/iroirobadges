@@ -1,6 +1,6 @@
 /**
  * @name iroirobadges
- * @version 1.0.22
+ * @version 1.0.50
  * @description いろいろバッジをつけれる。
  * @author HappyOfficial
  * @source https://github.com/Akanecko/iroirobadges
@@ -72,6 +72,15 @@ const config = {
 		]
 	}]
 };
+	"updatelog": [{
+		"type": "updated",
+		"title": "アップデート中....",
+		"items": [
+			"自動更新プログラムを用意中です。もう少しだけお待ちください。"
+		]
+	}]
+};
+
 function buildPlugin([BasePlugin, PluginApi]) {
 	const module = {
 		exports: {}
